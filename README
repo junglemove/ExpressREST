@@ -5,9 +5,14 @@ express -v ejs ExpressHTML
 package.json JS app entry point:
   "scripts": {
     "start": "node ./bin/www",
-    "start": "nodemon ./bin/www"
+    "start:dev": "SET DEBUG=expresshtml:* & nodemon ./bin/www"
   },
 
 npm run start
 ou
 npm run start:dev
+
+
+/*************/
+
+process.env.PORT => process.env stock les var d'environnement
