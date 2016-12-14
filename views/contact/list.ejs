@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<ul>
+    <% contacts.forEach((contact) => { %>
+        <li><%= contact.prenom %> <%= contact.nom %></li>
+    <%});%>
+</ul>
+</body>
+</html>
