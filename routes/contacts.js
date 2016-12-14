@@ -18,12 +18,13 @@ const contacts = [{
 // 1 - Creer la vue liste qui fait le rendu du tableau
 // (regader la docs de http://ejs.co)
 
-
 // 2 - Créer la vue afficher qui affiche le contact reçu
 // dans l'url (req.params.id)
 
 router.get('/', (req, res, next) => {
-    res.send('<h2>Liste des contacts</h2>');
+
+    res.render('contacts', {contacts});
+    //res.send('<h2>Liste des contacts</h2>');
 });
 
 router.get('/:id', (req, res, next) => {

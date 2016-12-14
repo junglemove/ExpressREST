@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contacts</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h2>Liste de contacts:</h2>
+<table>
+    <% contacts.forEach(function(contact){ %>
+        <%- include('contact-show', {contact}); %>
+    <% }); %>
+
+</table>
+
+</body>
+</html>
