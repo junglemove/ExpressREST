@@ -1,0 +1,9 @@
+node_modules
+
+.DS_STORE
+
+*.exe
+*.msi
+
+.idea
+.vscode
