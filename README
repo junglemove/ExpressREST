@@ -16,3 +16,7 @@ npm run start:dev
 /*************/
 
 process.env.PORT => process.env stock les var d'environnement
+
+/*************/
+example d'acces api !gh:
+https://api.github.com/?q=created:>2016-12-09
