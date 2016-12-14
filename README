@@ -1,2 +1,13 @@
 npm install express-generator -g
 express -v ejs ExpressHTML
+
+/*************/
+package.json JS app entry point:
+  "scripts": {
+    "start": "node ./bin/www",
+    "start": "nodemon ./bin/www"
+  },
+
+npm run start
+ou
+npm run start:dev
