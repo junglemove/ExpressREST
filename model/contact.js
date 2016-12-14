@@ -13,6 +13,19 @@ const contacts = [{
 }]
 
 class Contact{
+
+    constructor(contact){
+        this._contact = contact; //  _contact = _ = private
+    }
+
+    save(cb){
+        process.nextTick(() => {
+            this._contact.id = contacts[contacts.length - 1].id +1;
+            contacts.push(this._contact);
+            cb(false, this._contact);
+        })
+    }
+
     static find(cb){
         //cb(false, contacts);  Synchrone
         /*setTimeout(() =>{     //Asynch
