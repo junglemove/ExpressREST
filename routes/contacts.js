@@ -3,6 +3,8 @@
  */
 const Router = require('express').Router;
 const Contact = require('../model/contact');
+var bodyParser = require('body-parser');
+// use bodyParser here to use it "on demand" instead of use it as middleware (for every requests)
 
 let router = new Router();
 
@@ -40,10 +42,14 @@ router.get('/add', (req, res, next) =>{
     res.render('contact/add');
 });
 
-router.post('/add', (req, res, next) =>{
-    console.log(req.body);
+
+router.post('/add', bodyParser.urlencoded({extended: false}),(req, res, next) =>{
+    console.log(req.body); // parsé par le middleware bodyParser
     //contacts.push({})
-    res.redirect('/');
+     var contact = new Contact(req.body);
+     contact.save((err, save) => {
+        res.redirect('/');
+     });
 });
 
 module.exports = router;
