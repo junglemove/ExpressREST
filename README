@@ -35,3 +35,37 @@ https://raw.githubusercontent.com/mongodb/docs-assets/primer-dataset/primer-data
 initializ db with cmd:
 mongoimport --db test --collection restaurants --drop --file ~/downloads/primer-dataset.json
 
+connect to MongoDb from cmd:
+cmd>mongo
+ouvre un pipe JS V8 dan la cmd
+show databases
+
+db.restaurants.count();
+db.restaurants.find().toArray().length;
+db.restaurants.find({borough: 'Bronx'}).toArray().length; // tous les restaurants du Bronx
+db.restaurants.find({borough: /^B/}).toArray().length;  // tous les restaurants dont le quartier commence par B (Regex)
+db.restaurants.find({borough: 'Bronx', cuisine:'Backery'}).toArray().length;  // tous les restaurants Backery du Bronx
+
+MongoDB offre des opérateurs avancés:
+https://docs.mongodb.com/v3.0/reference/operator/query/
+db.restaurants.find({$or: [{borough: 'Bronx'}, {borough: 'Brooklyn'}]}).toArray().length // tous les restaurants de Brooklyn OU Bronx
+
+Recherche sous objet:
+db.restaurants.find({'address.street': 'Morris Park Ave'}).toArray().length;
+db.restaurants.find({'grades.score': 0}).toArray().length;
+db.restaurants.find({'grades.score': {$gt:100}}).toArray().length;
+db.restaurants.find({'grades.score': {$gt:90}}).toArray().length;
+
+/***************/
+Changer de base:
+/***************/
+use addressbook
+db
+db.createCollection('contacts')
+db.contacts.insert({prenom: 'Steve', nom: 'Ballmer'})
+db.contacts.insert({prenom: 'Larry', nom: 'Page'})
+
+exit
+
+
+
