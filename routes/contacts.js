@@ -8,13 +8,22 @@ var bodyParser = require('body-parser');
 
 let router = new Router();
 
-
-// 1 - Creer la vue liste qui fait le rendu du tableau
-// (regader la docs de http://ejs.co)
 router.get('/', (req, res, next) => {
 
     Contact.find((err, contacts) =>{
-        res.render('contact/list', {contacts});
+        res.json(contacts);
+    });
+});
+
+
+
+router.post('/', bodyParser.urlencoded({extended: false}),(req, res, next) =>{
+    console.log(req.body); // parsé par le middleware bodyParser
+    //contacts.push({})
+    var contact = new Contact(req.body);
+    contact.save((err, save) => {
+        res.statusCode = 201;
+        res.json(contact);
     });
 });
 
@@ -23,33 +32,19 @@ router.get('/', (req, res, next) => {
 // dans l'url (req.params.id)
 router.get('/:id', (req, res, next) => {
     var id = req.params.id;
-    Contact.findById(id, (err, contacts) =>{
+    Contact.findById(id, (err, contact) =>{
 
         if(err){
             return next(err);
         }
 
-        if(!contacts){
+        if(!contact){
             req.message = "Le contact n'existe pas";
             return next();
         }
 
-        res.render('contact/show', {contacts}); // since ES6 {contacts} can replace {contacts:contacts}
+        res.json(contact); // since ES6 {contacts} can replace {contacts:contacts}
     });
-});
-
-router.get('/add', (req, res, next) =>{
-    res.render('contact/add');
-});
-
-
-router.post('/add', bodyParser.urlencoded({extended: false}),(req, res, next) =>{
-    console.log(req.body); // parsé par le middleware bodyParser
-    //contacts.push({})
-     var contact = new Contact(req.body);
-     contact.save((err, save) => {
-        res.redirect('/');
-     });
 });
 
 module.exports = router;
