@@ -20,3 +20,18 @@ process.env.PORT => process.env stock les var d'environnement
 /*************/
 example d'acces api !gh:
 https://api.github.com/?q=created:>2016-12-09
+
+/*************/
+installer MongoDB
+cmd: mongod -version
+créer le folder Data/db pour correctement initialiser mongo
+
+Exemple de jeu de données:
+https://docs.mongodb.com/getting-started/shell/import-data/
+
+upload:
+https://raw.githubusercontent.com/mongodb/docs-assets/primer-dataset/primer-dataset.json
+
+initializ db with cmd:
+mongoimport --db test --collection restaurants --drop --file ~/downloads/primer-dataset.json
+
